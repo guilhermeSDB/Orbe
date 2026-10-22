@@ -23,6 +23,8 @@ FORM: Code-led extension of an established interface. No seed or comp selection:
 
 DOWNLOAD EXTENSION: Preserve the incumbent graphite/coral palette, Plus Jakarta Sans, open layouts and border-separated rows. An asymmetric two-column section joins an orbital mark and large left-aligned heading to Windows/Linux installer rows, with quieter macOS/mobile availability beneath. At mobile widths the introduction precedes the rows in one column. Download actions are ordinary accessible links to the user-supplied release assets; there is no modal or automatic download. Keep platform-specific installation notes visible and retain the legacy Windows environment variable as a fallback. No new visual system or raster assets are required.
 
+ARCH EXTENSION: The repository's PKGBUILD produces a native x86_64 pacman package from the release tag. A separate Arch Linux and derivatives row exposes the `.pkg.tar.zst` action only when `VITE_DOWNLOAD_LINUX_ARCH_URL` is configured, with a visible `pacman -U` installation note. Preserve the existing row styles and wrap the command on mobile. The Arch Linux package workflow builds in an Arch container and uploads the package as an artifact; the Ubuntu Linux build workflow produces AppImage and DEB. Runtime validation still requires Arch. Desktop and mobile landing tests, production build and visual inspection passed for this extension; the detector reported existing palette/type/radius advisories outside the added rules.
+
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 
 ## Evidence

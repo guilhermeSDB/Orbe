@@ -28,7 +28,7 @@ const faqs = [
   ['Funciona sem internet?', 'Você pode ouvir e assistir aos arquivos que já estão no computador sem internet. Downloads, importação de playlists de serviços e busca de letras online precisam de conexão. Letras locais em LRC também são aceitas.'],
   ['O Orbe baixa músicas diretamente do Spotify?', 'Não. O Orbe lê a lista de faixas de uma playlist pública, busca versões no YouTube e permite revisar as correspondências antes de baixar. Você também pode importar uma exportação oficial da conta quando a leitura pública estiver incompleta.'],
   ['Quais formatos posso converter?', 'Áudio em MP3, M4A, Opus, FLAC e WAV; vídeo em MP4 e WebM. Também é possível extrair apenas o áudio de um vídeo. O original é preservado e o resultado entra na biblioteca. Arquivos protegidos por DRM não são suportados.'],
-  ['Em quais sistemas ele está disponível?', 'O Orbe tem instalador para Windows 10 e 11 e pacotes AppImage e .deb para Linux x64. Os links estão na seção de downloads. Ainda não há versões para macOS, Android ou iOS.'],
+  ['Em quais sistemas ele está disponível?', 'O Orbe tem instalador para Windows 10 e 11 e pacotes AppImage, .deb e .pkg.tar.zst para Linux x64. O pacote .pkg.tar.zst é instalado com pacman no Arch Linux e derivados, como CachyOS, EndeavourOS e Manjaro. Confira a disponibilidade de cada formato na seção de downloads. Ainda não há versões para macOS, Android ou iOS.'],
 ]
 
 function App() {

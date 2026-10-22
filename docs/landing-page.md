@@ -45,7 +45,7 @@ Referência: [protocolo Open Graph](https://ogp.me/).
 
 ## Download do instalador
 
-Os botões **Baixar Orbe** do topo e da apresentação levam à seção **Escolha seu sistema**. Nela, Windows tem um instalador `.exe` e Linux x64 tem opções AppImage e `.deb`. macOS e Android/iOS aparecem como **Não disponível**, sem links ou previsão de lançamento.
+Os botões **Baixar Orbe** do topo e da apresentação levam à seção **Escolha seu sistema**. Nela, Windows tem um instalador `.exe` e Linux x64 tem opções AppImage, `.deb` e uma linha específica para o pacote `.pkg.tar.zst` do Arch Linux e derivados. Essa linha explica a instalação com `pacman`. macOS e Android/iOS aparecem como **Não disponível**, sem links ou previsão de lançamento.
 
 Na Vercel, configure as variáveis públicas com as URLs HTTPS dos arquivos publicados no GitHub Releases e faça um novo deploy:
 
@@ -53,9 +53,10 @@ Na Vercel, configure as variáveis públicas com as URLs HTTPS dos arquivos publ
 VITE_DOWNLOAD_WINDOWS_URL=https://github.com/guilhermeSDB/orbe/releases/latest/download/Orbe-Windows-x64.exe
 VITE_DOWNLOAD_LINUX_APPIMAGE_URL=https://github.com/guilhermeSDB/orbe/releases/latest/download/Orbe-Linux-x64.AppImage
 VITE_DOWNLOAD_LINUX_DEB_URL=https://github.com/guilhermeSDB/orbe/releases/latest/download/Orbe-Linux-x64.deb
+VITE_DOWNLOAD_LINUX_ARCH_URL=https://github.com/guilhermeSDB/orbe/releases/download/v0.2.1/orbe-0.2.1-1-x86_64.pkg.tar.zst
 ```
 
-Esses links exigem arquivos com exatamente esses nomes na release marcada como Latest. Para acesso público, o repositório de distribuição também precisa ser público. Se o local de publicação mudar, atualize as URLs.
+Esses links exigem arquivos com exatamente esses nomes. Os exemplos Windows, AppImage e DEB usam a release marcada como Latest. O exemplo Arch aponta diretamente para a release `v0.2.1` e preserva o nome gerado pelo `makepkg`; atualize sua URL a cada versão ou revisão do pacote. Para acesso público, o repositório de distribuição também precisa ser público. Se o local de publicação mudar, atualize as URLs. Veja como gerar e anexar o pacote Arch em [Linux](linux.md#arch-linux-e-derivados-cachyos-endeavouros-manjaro).
 
 Cada formato é configurado de forma independente. Sem uma URL válida, sua ação mostra **Download indisponível**; os demais links continuam funcionando. URLs sem HTTPS, inválidas ou contendo credenciais são rejeitadas. A variável anterior `VITE_DOWNLOAD_URL` continua aceita como alternativa para Windows, com prioridade para `VITE_DOWNLOAD_WINDOWS_URL`.
 

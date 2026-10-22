@@ -16,6 +16,7 @@ export default defineConfig({
       VITE_DOWNLOAD_WINDOWS_URL: 'https://github.com/guilhermeSDB/orbe/releases/latest/download/Orbe-Windows-x64.exe',
       VITE_DOWNLOAD_LINUX_APPIMAGE_URL: 'https://github.com/guilhermeSDB/orbe/releases/latest/download/Orbe-Linux-x64.AppImage',
       VITE_DOWNLOAD_LINUX_DEB_URL: 'https://github.com/guilhermeSDB/orbe/releases/latest/download/Orbe-Linux-x64.deb',
+      VITE_DOWNLOAD_LINUX_ARCH_URL: 'https://github.com/guilhermeSDB/orbe/releases/download/v0.2.1/orbe-0.2.1-1-x86_64.pkg.tar.zst',
     },
   },
 })

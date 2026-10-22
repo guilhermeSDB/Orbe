@@ -1,0 +1,73 @@
+name: Arch Linux package
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+jobs:
+  arch:
+    name: Build pacman package (x86_64)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    container:
+      image: archlinux:base-devel
+    defaults:
+      run:
+        shell: bash
+    env:
+      GIT_LFS_SKIP_SMUDGE: '1'
+      CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+    steps:
+      - name: Update Arch and install build tools
+        run: pacman -Syu --needed --noconfirm git sudo nodejs npm
+
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Prepare unprivileged build user
+        run: |
+          useradd --create-home builder
+          printf 'builder ALL=(root) NOPASSWD: /usr/bin/pacman\n' > /etc/sudoers.d/builder
+          chmod 440 /etc/sudoers.d/builder
+          visudo -cf /etc/sudoers.d/builder
+          install -d -o builder -g builder /home/builder/orbe-package
+          install -o builder -g builder -m 644 packaging/arch/{PKGBUILD,.SRCINFO,orbe.desktop} /home/builder/orbe-package/
+
+      - name: Check metadata and build release tag
+        env:
+          RELEASE_TAG: ${{ github.ref_type == 'tag' && github.ref_name || '' }}
+        run: |
+          runuser -u builder -- bash -euo pipefail <<'BUILD'
+          cd /home/builder/orbe-package
+          makepkg --printsrcinfo | diff -u .SRCINFO -
+          source PKGBUILD
+          if [[ -n "$RELEASE_TAG" && "$RELEASE_TAG" != "v$pkgver" ]]; then
+            printf 'Tag %s does not match PKGBUILD version v%s. Update PKGBUILD and .SRCINFO before tagging.\n' "$RELEASE_TAG" "$pkgver" >&2
+            exit 1
+          fi
+          makepkg --syncdeps --noconfirm
+          BUILD
+
+      - name: Inspect and collect package
+        run: |
+          install -d dist-arch
+          for package in /home/builder/orbe-package/*.pkg.tar.zst; do
+            pacman -Qip "$package"
+            pacman -Qlp "$package"
+            install -m 644 "$package" dist-arch/
+          done
+          cd dist-arch
+          sha256sum -- *.pkg.tar.zst > SHA256SUMS
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: orbe-arch-x86_64
+          path: |
+            dist-arch/*.pkg.tar.zst
+            dist-arch/SHA256SUMS
+          if-no-files-found: error

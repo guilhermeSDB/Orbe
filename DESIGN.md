@@ -314,6 +314,8 @@ Keyboard focus is visible: the web uses a 2px coral outline offset by 6px; deskt
 
 Ordinary desktop containers use semantic surfaces and restrained borders; library grid entries are open artwork-and-text groups with no enclosing card fill, border or shadow. List entries use separators and a hover wash. Avoid adding a filled card around each grid item by default. The landing's main screenshot is a bordered, rounded, elevated preview; smaller chapter captures use quieter framing.
 
+The landing download section uses border-separated rows for Windows, Linux AppImage/DEB, and Arch Linux derivatives. Reuse the same heading, icon, secondary action and muted note styles for the Arch package. Its pacman command is inline code that wraps at narrow widths. Each format uses its own configured HTTPS URL and shows an unavailable status when that URL is missing.
+
 ### Tags / Counts
 
 The collection count is small muted inline metadata with an icon and a 7px gap, not a prominent badge. Selection controls such as the library view switch communicate state through a small surface change and coral icon. There is no independent global chip component in the current component library.

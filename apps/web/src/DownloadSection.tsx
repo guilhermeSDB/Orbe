@@ -18,6 +18,7 @@ const downloads = {
     downloadUrl(import.meta.env.VITE_DOWNLOAD_URL),
   appImage: downloadUrl(import.meta.env.VITE_DOWNLOAD_LINUX_APPIMAGE_URL),
   deb: downloadUrl(import.meta.env.VITE_DOWNLOAD_LINUX_DEB_URL),
+  arch: downloadUrl(import.meta.env.VITE_DOWNLOAD_LINUX_ARCH_URL),
 }
 
 function InstallerLink({
@@ -81,6 +82,17 @@ export function DownloadSection() {
             <InstallerLink href={downloads.deb}>Baixar .deb</InstallerLink>
           </div>
           <p className="download-platform-note">AppImage: dê permissão de execução e instale FFmpeg e yt-dlp no sistema. O pacote .deb instala as dependências pelo gerenciador de pacotes.</p>
+        </article>
+
+        <article className="download-platform" aria-labelledby="arch-title">
+          <div className="download-platform-heading">
+            <Terminal size={27} strokeWidth={1.5} aria-hidden="true" />
+            <div><h3 id="arch-title">Arch Linux e derivados</h3><p>Arch, CachyOS, EndeavourOS e Manjaro · x86_64</p></div>
+          </div>
+          <div className="download-platform-actions">
+            <InstallerLink href={downloads.arch}>Baixar .pkg.tar.zst</InstallerLink>
+          </div>
+          <p className="download-platform-note">Instale o arquivo baixado com <code>sudo pacman -U ./nome-do-pacote.pkg.tar.zst</code>. O pacman também instala as dependências, incluindo FFmpeg e yt-dlp.</p>
         </article>
 
         <div className="download-other-platforms" aria-label="Outras plataformas">
